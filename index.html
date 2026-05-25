@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livro de Assinaturas</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 40px;
+        }
+
+        h1, h2 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Container dos inputs e botão */
+        .form-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 5px 8px;
+            font-size: 16px;
+            border: 1px solid #767676;
+            border-radius: 2px;
+            width: 250px;
+        }
+
+        button {
+            padding: 4px 12px;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            border: 1px solid #767676;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e5e5e5;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 30px 0;
+        }
+
+        /* Estilização da lista de assinaturas */
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Assinar:</h1>
+
+    <div class="form-container">
+        <input type="text" id="nomeInput" placeholder="Nome">
+        <input type="text" id="cidadeInput" placeholder="Cidade">
+        <button onclick="adicionarAssinatura()">ASSINAR</button>
+    </div>
+
+    <hr>
+
+    <h2>Assinaturas:</h2>
+    
+    <ul id="listaAssinaturas"></ul>
+
+    <script>
+        function adicionarAssinatura() {
+            // Captura os valores dos inputs
+            const nome = document.getElementById('nomeInput').value.trim();
+            const cidade = document.getElementById('cidadeInput').value.trim();
+
+            // Validação simples para não assinar em branco
+            if (nome === '' || cidade === '') {
+                alert('Por favor, preencha o Nome e a Cidade.');
+                return;
+            }
+
+            // Captura e formata a data e hora atual (DD/MM/AAAA HH:MM)
+            const agora = new Date();
+            const dia = String(agora.getDate()).padStart(2, '0');
+            const mes = String(agora.getMonth() + 1).padStart(2, '0'); // Janeiro é 0
+            const ano = agora.getFullYear();
+            const horas = String(agora.getHours()).padStart(2, '0');
+            const minutos = String(agora.getMinutes()).padStart(2, '0');
+            
+            const dataFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+
+            // Cria o texto da assinatura idêntico ao modelo da imagem
+            const textoAssinatura = `${nome} - ${cidade} - ${dataFormatada}`;
+
+            // Cria um novo elemento na lista (<li>)
+            const novaLinha = document.createElement('li');
+            novaLinha.textContent = textoAssinatura;
+
+            // Adiciona a nova assinatura na lista HTML
+            document.getElementById('listaAssinaturas').appendChild(novaLinha);
+
+            // Limpa os campos de texto para a próxima assinatura
+            document.getElementById('nomeInput').value = '';
+            document.getElementById('cidadeInput').value = '';
+        }
+    </script>
+
+</body>
+</html>
