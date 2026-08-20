@@ -15,7 +15,7 @@
             margin-bottom: 20px;
         }
 
-        /* Container dos inputs e botão */
+
         .form-container {
             display: flex;
             gap: 10px;
@@ -50,7 +50,7 @@
             margin: 30px 0;
         }
 
-        /* Estilização da lista de assinaturas */
+
         ul {
             padding-left: 20px;
         }
@@ -79,17 +79,15 @@
 
     <script>
         function adicionarAssinatura() {
-            // Captura os valores dos inputs
+
             const nome = document.getElementById('nomeInput').value.trim();
             const cidade = document.getElementById('cidadeInput').value.trim();
 
-            // Validação simples para não assinar em branco
             if (nome === '' || cidade === '') {
                 alert('Por favor, preencha o Nome e a Cidade.');
                 return;
             }
 
-            // Captura e formata a data e hora atual (DD/MM/AAAA HH:MM)
             const agora = new Date();
             const dia = String(agora.getDate()).padStart(2, '0');
             const mes = String(agora.getMonth() + 1).padStart(2, '0'); // Janeiro é 0
@@ -99,17 +97,15 @@
             
             const dataFormatada = `${dia}/${mes}/${ano} ${horas}:${minutos}`;
 
-            // Cria o texto da assinatura idêntico ao modelo da imagem
+
             const textoAssinatura = `${nome} - ${cidade} - ${dataFormatada}`;
 
-            // Cria um novo elemento na lista (<li>)
             const novaLinha = document.createElement('li');
             novaLinha.textContent = textoAssinatura;
 
-            // Adiciona a nova assinatura na lista HTML
             document.getElementById('listaAssinaturas').appendChild(novaLinha);
 
-            // Limpa os campos de texto para a próxima assinatura
+
             document.getElementById('nomeInput').value = '';
             document.getElementById('cidadeInput').value = '';
         }
