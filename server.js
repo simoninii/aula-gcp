@@ -2,7 +2,6 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-// O Cloud Run exige que o site escute na porta enviada pela variável de ambiente PORT (padrão 8080)
 const PORT = process.env.PORT || 8080;
 
 const server = http.createServer((req, res) => {
